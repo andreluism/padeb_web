@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+       
+    
+    <h:head>
+    <script type="text/javascript" src="/padeb_interface_rev001/recursos/jqplot.barRenderer.min.js"></script>
+    <script type="text/javascript" src="/padeb_interface_rev001/recursos/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="/padeb_interface_rev001/recursos/jqplot.pointLabels.min.js"></script>
+    <script type="text/javascript" src="/padeb_interface_rev001/recursos/jqplot.highlighter.min.js"></script>
+    <script type="text/javascript" src="/padeb_interface_rev001/recursos/jqplot.cursor.min.js"></script>
+    <script type="text/javascript" src="/padeb_interface_rev001/recursos/jqplot.dateAxisRenderer.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/padeb_interface_rev001/recursos/jquery.jqplot.css" />
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(construirGrafico);
+                
+        var plot2;
+        function construirGrafico(){
+        // For horizontal bar charts, x an y values must will be "flipped"
+        // from their vertical bar counterpart.
+        
+        plot2 = $.jqplot('chartDiv', barChartValores, {
+            seriesDefaults: {
+                renderer:$.jqplot.BarRenderer,
+                lineWidth: 10,
+                pointLabels: { 
+                	show: true, 
+                	location: 'e', 
+                	edgeTolerance: -15
+                },
+                rendererOptions: {
+                barWidth: 30,
+                barDirection: 'horizontal',
+                // Put a 30 pixel margin between bars.
+                // Highlight bars when mouse button pressed.
+                // Disables default highlighting on mouse over.
+                },
+                // Show point labels to the right ('e'ast) of each bar.
+                // edgeTolerance of -15 allows labels flow outside the grid
+                // up to 15 pixels.  If they flow out more than that, they 
+                // will be hidden.
+                shadowAngle: 135
+                // Here's where we tell the chart it is oriented horizontally.
+                },
+                series:[
+                    {label:'Media Lingua Portuguesa'},
+                    {label:'Media Matematica'},
+                ],
+                legend: {
+                    show: true,
+                    placement: 'outsideGrid'
+                },
+                // Rotate the bar shadow as if bar is lit from top right.
+            axes: {
+                yaxis: {
+                    renderer: $.jqplot.CategoryAxisRenderer
+                },
+                xaxis: {
+                    min: 0,
+                    max: 450,
+                }
+            },
+            cursor: {
+                show: false
+            }
+        });
+        
+        $('#chartDiv').bind('jqplotDataHighlight', 
+            function nivelProf(ev, seriesIndex, pointIndex, data) {
+                if (data[0] > 0 && data[0] < 125) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 0'); } else { $('#info3').html('Nível de proficiencia em matematica = 0'); }
+                }
+                if (data[0] > 125 && data[0] < 150) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 1'); } else { $('#info3').html('Nível de proficiencia em matematica = 1'); }
+                }
+                if (data[0] > 150 && data[0] < 175) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 2'); } else { $('#info3').html('Nível de proficiencia em matematica = 2'); }
+                }
+                if (data[0] > 175 && data[0] < 200) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 3'); } else { $('#info3').html('Nível de proficiencia em matematica = 3'); }
+                }
+                if (data[0] > 200 && data[0] < 225) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 4'); } else { $('#info3').html('Nível de proficiencia em matematica = 4'); }
+                }
+                if (data[0] > 225 && data[0] < 250) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 5'); } else { $('#info3').html('Nível de proficiencia em matematica = 5'); }
+                }
+                if (data[0] > 250 && data[0] < 275) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 6'); } else { $('#info3').html('Nível de proficiencia em matematica = 6'); }
+                }
+                if (data[0] > 275 && data[0] < 300) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 7'); } else { $('#info3').html('Nível de proficiencia em matematica = 7'); }
+                }
+                if (data[0] > 300 && data[0] < 325) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 8'); } else { $('#info3').html('Nível de proficiencia em matematica = 8'); }
+                }
+                if (data[0] > 325 && data[0] < 350) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 9'); } else { $('#info3').html('Nível de proficiencia em matematica = 9'); }
+                }
+                if (data[0] > 350 && data[0] < 375) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 10'); } else { $('#info3').html('Nível de proficiencia em matematica = 10'); }
+                }
+                if (data[0] > 375 && data[0] < 400) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 11'); } else { $('#info3').html('Nível de proficiencia em matematica = 11'); }
+                }
+                if (data[0] > 425) {
+                    if (seriesIndex == 0) { $('#info3').html('Nível de proficiencia em portugues = 12'); } else { $('#info3').html('Nível de proficiencia em matematica = 12'); }
+                }
+            }
+          );
+              
+
+              $('#chartDiv').bind('jqplotDataUnhighlight', 
+            function (ev) {
+              $('#info3').html('Passe o mouse na coluna para ver o nível de proficiencia');
+            }
+      );
+    };
+    //]]>
+    
+    var barChartValores = [
+            [<c:forEach items="#{filtroController.regioesChart}" var="pageHit" varStatus="loop">
+                [${pageHit.mediaLP}, '${pageHit.nome}']${!loop.last ? ',' : ''}
+            </c:forEach>,
+            <c:forEach items="#{filtroController.UFsChart}" var="pageHit" varStatus="loop">
+                [${pageHit.mediaLP}, '${pageHit.nome}']${!loop.last ? ',' : ''}
+            </c:forEach>,
+            <c:forEach items="#{filtroController.municipiosChart}" var="pageHit" varStatus="loop">
+                [${pageHit.mediaLP}, '${pageHit.nome}']${!loop.last ? ',' : ''}
+            </c:forEach>],
+    
+            [<c:forEach items="#{filtroController.regioesChart}" var="pageHit" varStatus="loop">
+                [${pageHit.mediaMT}, '${pageHit.nome}']${!loop.last ? ',' : ''}
+            </c:forEach>,
+            <c:forEach items="#{filtroController.UFsChart}" var="pageHit" varStatus="loop">
+                [${pageHit.mediaMT}, '${pageHit.nome}']${!loop.last ? ',' : ''}
+            </c:forEach>,
+            <c:forEach items="#{filtroController.municipiosChart}" var="pageHit" varStatus="loop">
+                [${pageHit.mediaMT}, '${pageHit.nome}']${!loop.last ? ',' : ''}
+            </c:forEach>]]
+    ;
+    </script>
+        <title>PADEB</title>
+        #{filtroController.inicializa()}
+        
+    </h:head>
+    
+    <h:body>
+        <h:form id="filtroUm">
+                        
+        <h:panelGrid id="panelGrid1" columns="3" style="margin-bottom:10px" cellpadding="5"  
+                bgcolor=""   columnClasses="label, column">   
+
+            <p:pickList id="pickListRegiao" value="#{filtroController.regioes}" var="regiao"   
+                         itemLabel="#{regiao.nome}" itemValue="#{regiao}" converter="#{regiaoConverter}" >
+                
+                <f:facet name="sourceCaption">Regiões</f:facet>  
+                <f:facet name="targetCaption">Filtradas</f:facet>
+                
+                <p:ajax event="transfer" listener="#{filtroController.handleSelectionRegiao}" update="pickListUF pickListRegiao pickListMunicipio @(.ui-selectmanycheckbox)" />
+            
+            </p:pickList>
+            
+            <p:pickList id="pickListUF" value="#{filtroController.UFs}" var="uf"   
+                        itemLabel="#{uf.nome}" itemValue="#{uf}" converter="#{UFConverter}">
+            
+                <f:facet name="sourceCaption">Estados</f:facet>  
+                <f:facet name="targetCaption">Filtrados</f:facet>
+                
+                <p:ajax event="transfer" listener="#{filtroController.handleSelectionUF}" update="pickListUF pickListRegiao pickListMunicipio @(.ui-selectmanycheckbox)"/>
+            
+            </p:pickList>
+            
+            <p:pickList id="pickListMunicipio" value="#{filtroController.municipios}" var="mun"   
+                        itemLabel="#{mun.nome}" itemValue="#{mun}" converter="#{municipioConverter}"
+                        showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+            
+                <f:facet name="sourceCaption">Municípios</f:facet>  
+                <f:facet name="targetCaption">Filtrados</f:facet>
+                
+                <p:ajax event="transfer" listener="#{filtroController.handleSelectionMunicipio}" update="pickListUF pickListRegiao pickListMunicipio @(.ui-selectmanycheckbox)"/>
+
+            </p:pickList>
+            
+        </h:panelGrid>
+            
+    </h:form>        
+    <h:form id="filtroDois">
+        
+        <h:panelGrid id="panelGrid2" columns="4" style="margin-bottom:10px" cellpadding="5"  
+                     bgcolor="" title="Filtros obrigatórios"  columnClasses="label, column">
+        <p:fieldset legend="Série" >
+        <p:selectOneListbox  label="Serie" id="listboxSerie" value="#{filtroController.serie}" >  
+            <f:selectItem itemLabel="5ª" itemValue="5" />  
+            <f:selectItem itemLabel="9ª" itemValue="9" />  
+            <f:selectItem itemLabel="3º" itemValue="12" />
+            
+            <f:ajax/>
+        </p:selectOneListbox>
+        </p:fieldset>
+        <p:fieldset legend="Tipo de rede" >  
+        <p:selectOneListbox  label="Tipo de rede" value="#{filtroController.tipoRede}">  
+            <f:selectItem itemLabel="-" itemValue="0" /> 
+            <f:selectItem itemLabel="Federal" itemValue="1" /> 
+            <f:selectItem itemLabel="Estadual" itemValue="2" />
+            <f:selectItem itemLabel="Municipal" itemValue="3" />
+            <f:selectItem itemLabel="Privada" itemValue="4" />
+            <f:selectItem itemLabel="Pública" itemValue="5" />
+            
+            <f:ajax/>
+        </p:selectOneListbox>
+        </p:fieldset>
+        <p:fieldset legend="Localização" >
+        <p:selectOneListbox  label="Localizacao" id="listboxLocalizacao" value="#{filtroController.localizacao}"> 
+            <f:selectItem itemLabel="-" itemValue="0" /> 
+            <f:selectItem itemLabel="Urbana" itemValue="1" /> 
+            <f:selectItem itemLabel="Rural" itemValue="2" />
+            
+            <f:ajax/>
+        </p:selectOneListbox>
+            
+        </p:fieldset>
+        <p:fieldset legend="Capital" >   
+        <p:selectOneListbox  label="Capital" id="listboxCapital" value="#{filtroController.capital}">  
+            <f:selectItem itemLabel="-" itemValue="0" /> 
+            <f:selectItem itemLabel="Capital" itemValue="1" /> 
+            <f:selectItem itemLabel="Interior" itemValue="2" />
+            
+            <f:ajax/>
+        </p:selectOneListbox>
+            </p:fieldset>
+            </h:panelGrid>
+        </h:form>
+        <h:form id="form" >
+        <h:panelGrid id="panelGridTargets" columns="3" style="margin-bottom:10px" cellpadding="5"  
+                bgcolor=""   columnClasses="label, column">
+        <p:fieldset legend="Regioes" >
+            <p:selectManyCheckbox value="#{filtroController.regioesDatatable}"  
+                                  layout="pageDirection" converter="#{regiaoConverter}"
+                                  label="Regiao" >  
+                <f:selectItems var="regiao" itemLabel="#{regiao.nome}" itemValue="#{regiao}" value="#{filtroController.regioes.target}" />  
+                <f:ajax event="change" />
+            </p:selectManyCheckbox> 
+        </p:fieldset>
+            <p:fieldset legend="Estados" >
+                <p:selectManyCheckbox value="#{filtroController.UFsDatatable}"  
+                                  layout="pageDirection" converter="#{UFConverter}">  
+                <f:selectItems var="uf" itemLabel="#{uf.nome}" itemValue="#{uf}" value="#{filtroController.UFs.target}" />  
+                <f:ajax event="change" />
+            </p:selectManyCheckbox> 
+        </p:fieldset>
+            <p:fieldset legend="Municipios" >
+                <p:selectManyCheckbox value="#{filtroController.municipiosDatatable}"  
+                                  layout="pageDirection" converter="#{municipioConverter}">  
+                <f:selectItems var="municipio" itemLabel="#{municipio.nome}" itemValue="#{municipio}" value="#{filtroController.municipios.target}" />  
+                <f:ajax event="change" />
+            </p:selectManyCheckbox> 
+        </p:fieldset>
+            
+        </h:panelGrid>
+        
+            <p:commandButton value="Gerar gráfico" action="#{filtroController.prepareForChart()}" update="" ajax="true" onclick="testeGraf();"/>
+        
+        <p:separator></p:separator>
+        
+        <div>
+            <p:panel>
+                <div id="info3" style="width:500px; height:40px;" />
+            </p:panel>
+        </div>
+        <div>
+            <div id="chartDiv" style="width:1000px; height:600px;" />
+        </div>
+        
+        <p:dialog id="dialogChart" header="Grafico" widgetVar="dlgChart" closeOnEscape="true" dynamic="true" width="1000" modal="true">  
+
+
+                        <p:barChart id="regioesChart"  value="#{filtroController.categoryModel}" legendPosition="ne" style="height: available; width: available;"  
+                                    title="Comparativo de região" orientation="horizontal" min="0" max="400" shadow="false"
+                                    showDatatip="true"/>
+                </p:dialog> 
+          
+        
+        </h:form>
+    </h:body>
+</html>
